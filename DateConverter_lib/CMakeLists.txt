@@ -1,13 +1,11 @@
-project(DateConverter)
+project(RollingHash)
 
 set(HEADER_FILES
-        Gregorian.h
-        Julian.h
+        RollingHash.h
         )
 
 set(SOURCE_FILES
-        Gregorian.cpp
-        Julian.cpp
+        RollingHash.cpp
         )
 
-add_library(DateConverter_lib STATIC ${SOURCE_FILES} ${HEADER_FILES})
+add_library(RollingHash_lib STATIC ${SOURCE_FILES} ${HEADER_FILES})

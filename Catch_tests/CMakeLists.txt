@@ -1,2 +1,0 @@
-add_executable(Catch_tests_run ConverterTests.cpp AbsoluteDateTest.cpp)
-target_link_libraries(Catch_tests_run DateConverter_lib)

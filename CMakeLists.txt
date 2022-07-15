@@ -1,18 +1,15 @@
 cmake_minimum_required(VERSION 3.14)
-project(testing_test)
+project(testing_rolling_hash)
 
 set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES main.cpp)
-add_executable(DateConverter_run ${SOURCE_FILES})
+add_executable(RollingHash_run ${SOURCE_FILES})
 
-include_directories(DateConverter_lib)
-add_subdirectory(DateConverter_lib)
+include_directories(RollingHash_lib)
+add_subdirectory(RollingHash_lib)
 
-target_link_libraries(DateConverter_run DateConverter_lib)
+target_link_libraries(RollingHash_run RollingHash_lib)
 
 add_subdirectory(Google_tests)
-add_subdirectory(Boost_tests)
-add_subdirectory(Catch_tests)
-add_subdirectory(Doctest_tests)
 
