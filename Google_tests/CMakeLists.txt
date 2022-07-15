@@ -3,7 +3,7 @@ add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 
-add_executable(Google_Tests_run RollingHashTests.cpp )
+add_executable(Google_Tests_run RollingHashTest.cpp )
 
 target_link_libraries(Google_Tests_run RollingHash_lib)
 
