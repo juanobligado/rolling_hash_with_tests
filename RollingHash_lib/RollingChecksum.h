@@ -1,15 +1,12 @@
 //
 // Created by Juan Obligado on 16/07/2022.
 //
-#include <condition_variable>
-#include <chrono>
-#include <mutex>
-#include <queue>
 #include <vector>
-#include <queue>
 #include "CustomTypeDefinitions.h"
-#ifndef TESTING_ROLLING_HASH_ROLLINGCHECKSUM_H
-#define TESTING_ROLLING_HASH_ROLLINGCHECKSUM_H
+
+#ifndef ROLLINGCHECKSUM_H
+#define ROLLINGCHECKSUM_H
+
 class RollingCheckSum{
     private:
 
@@ -22,14 +19,14 @@ class RollingCheckSum{
     public:
         RollingCheckSum();
 
-        //Initialize from vector
+        // Initialize from vector
         RollingCheckSum& init_from_array(std::vector<Byte>& data);
         uint32_t check_sum();
-        //Push byte into checksum
+        // Push byte into checksum
         RollingCheckSum& roll_in(Byte input);
-        //pulls item from checksum
+        // pulls item from checksum
         RollingCheckSum& roll_out();
-
+        //
         uint16_t get_a(){return a;}
         uint16_t get_b(){return b;}
         int get_count(){return count;}
@@ -44,4 +41,4 @@ class RollingCheckSum{
         }
 
 };
-#endif //TESTING_ROLLING_HASH_ROLLINGCHECKSUM_H
+#endif //ROLLINGCHECKSUM_H

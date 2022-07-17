@@ -1,12 +1,12 @@
 project(RollingHash)
 
 set(HEADER_FILES
-        RollingHash.h
+        RsyncFileDiff.h
         RollingChecksum.h CustomTypeDefinitions.h)
 
 set(SOURCE_FILES
-        RollingHash.cpp
+        RsyncFileDiff.cpp
         RollingChecksum.cpp
-        sha1.hpp)
+        Sha1.hpp)
 
 add_library(RollingHash_lib STATIC ${SOURCE_FILES} ${HEADER_FILES})

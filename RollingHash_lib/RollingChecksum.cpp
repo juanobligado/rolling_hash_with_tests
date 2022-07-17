@@ -1,12 +1,8 @@
 //
 // Created by Juan Obligado on 15/07/2022.
 //
-#include <condition_variable>
 #include <chrono>
-#include <mutex>
-#include <queue>
 #include <vector>
-#include <queue>
 #include "RollingChecksum.h"
 
 
@@ -35,6 +31,7 @@ RollingCheckSum& RollingCheckSum::init_from_array(std::vector<Byte>& data){
     return *this;
 }
 
+//Returns 32 bit Checksum value
 uint32_t RollingCheckSum::check_sum(){
     //
     const int POW_16 = 16;
@@ -59,7 +56,6 @@ RollingCheckSum& RollingCheckSum::roll_out(){
         count = 0;
         return *this;
     }
-
     // Having at least one element to remove,
     last = window.front();
     auto removed_item_16 = uint16_t (last);

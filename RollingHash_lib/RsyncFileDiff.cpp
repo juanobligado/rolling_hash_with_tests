@@ -1,9 +1,9 @@
 #include <vector>
-#include "RollingHash.h"
-#include "sha1.hpp"
+#include "RsyncFileDiff.h"
+#include "Sha1.hpp"
 
 //Returns List with weak and strong hash values for each block
-std::vector<HashItem> RollingHash::calculate_hash_table(std::istream&  input){
+std::vector<HashItem> RsyncFileDiff::calculate_hash_table(std::istream&  input){
     //read chunks from file
     std::vector<HashItem> result = {};
     std::vector<Byte> buffer(block_size);
@@ -27,18 +27,18 @@ std::vector<HashItem> RollingHash::calculate_hash_table(std::istream&  input){
 }
 
 // Calculates simple 32-bit rolling checksum
-uint32_t RollingHash::simple(std::vector<Byte> &chunk) {
+uint32_t RsyncFileDiff::simple(std::vector<Byte> &chunk) {
     return RollingCheckSum().init_from_array(chunk).check_sum();
 }
 // Calculates SHA1 Hash from bytes
-std::string  RollingHash::strong(std::vector<Byte> &buffer) {
+std::string  RsyncFileDiff::strong(std::vector<Byte> &buffer) {
     SHA1 sha1 = {};
     sha1.update(buffer);
     auto str= sha1.final();
     return str;
 }
 
-HashItem RollingHash::create_block_hash_item(std::vector<Byte> &chunk)
+HashItem RsyncFileDiff::create_block_hash_item(std::vector<Byte> &chunk)
 {
     auto hi = HashItem();
     hi.simple_hash = simple(chunk);
@@ -47,7 +47,7 @@ HashItem RollingHash::create_block_hash_item(std::vector<Byte> &chunk)
 }
 
 
-std::shared_ptr<SimpleHashToComplexMap> RollingHash::build_indexes(std::vector<HashItem> &block_hashes){
+std::shared_ptr<SimpleHashToComplexMap> RsyncFileDiff::build_indexes(std::vector<HashItem> &block_hashes){
     //Todo Build Indexes from blocks
     auto indexes = std::make_shared<SimpleHashToComplexMap>();
     for(int  iBlockNo=0; iBlockNo < block_hashes.size(); iBlockNo++){
@@ -60,7 +60,7 @@ return indexes;
 }
 
 // Creates block diff summary
-BlockDiffResult RollingHash::create_diff_block(int index, std::vector<Byte> &mismatchedChars){
+BlockDiffResult RsyncFileDiff::create_diff_block(int index, std::vector<Byte> &mismatchedChars){
     auto diff =  BlockDiffResult();
     diff.start = index*block_size;
     diff.offset = diff.start + block_size;
@@ -70,7 +70,7 @@ BlockDiffResult RollingHash::create_diff_block(int index, std::vector<Byte> &mis
 
 //Looks for block comparison on src hash map and returns blockNumber of it if any
 // Returns src file matching block-number
-int RollingHash::find_matching_block(std::shared_ptr<SimpleHashToComplexMap> block_hash_map,RollingCheckSum& checkSum )
+int RsyncFileDiff::find_matching_block(std::shared_ptr<SimpleHashToComplexMap> block_hash_map, RollingCheckSum& checkSum )
 {
     //First check if having light checksum on src block hash map
     auto simpleHash = checkSum.check_sum();
@@ -96,7 +96,7 @@ int RollingHash::find_matching_block(std::shared_ptr<SimpleHashToComplexMap> blo
 }
 
 // Calculate differences between hash map and other stream
-std::shared_ptr<Differences> RollingHash::calculate_differences(std::istream& src , std::istream &other) {
+std::shared_ptr<Differences> RsyncFileDiff::calculate_differences(std::istream& src , std::istream &other) {
 
     auto result = std::make_shared<Differences>();
     auto block_hashes = calculate_hash_table(src);

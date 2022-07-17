@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
-#include "RollingHash.h"
+#include "RsyncFileDiff.h"
 #include <iostream>
 #include <fstream>
 #include <filesystem>
 
-TEST(RollingHashTestSuite, ShouldCreateHashTable){ // 12/2/2020 -> 737761
-    auto rolling_hash = RollingHash(8);// 8 byte hash
+TEST(RsyncFileDiffTests, ShouldCreateHashTable){ // 12/2/2020 -> 737761
+    auto rolling_hash = RsyncFileDiff(8);// 8 byte hash
     auto current = std::filesystem::current_path();
     std::cout<<current;
     auto have_file = std::filesystem::exists("./Input.txt/Input.txt");
@@ -19,8 +19,8 @@ TEST(RollingHashTestSuite, ShouldCreateHashTable){ // 12/2/2020 -> 737761
     test_file.close();
 }
 
-TEST(RollingHashTestSuite, SameFileShouldReturnNoDiff){ // 12/2/2020 -> 737761
-    auto rolling_hash = RollingHash(8);// 8 byte hash
+TEST(RsyncFileDiffTests, SameFileShouldReturnNoDiff){ // 12/2/2020 -> 737761
+    auto rolling_hash = RsyncFileDiff(8);// 8 byte hash
     auto current = std::filesystem::current_path();
     std::cout<<current;
     auto have_file = std::filesystem::exists("./Input.txt/Input.txt");
@@ -38,8 +38,8 @@ TEST(RollingHashTestSuite, SameFileShouldReturnNoDiff){ // 12/2/2020 -> 737761
     test_file_2.close();
 }
 
-TEST(RollingHashTestSuite, DifferentFileShouldReturnDiff){ // 12/2/2020 -> 737761
-    auto rolling_hash = RollingHash(8);// 8 byte hash
+TEST(RsyncFileDiffTests, DifferentFileShouldReturnDiff){ // 12/2/2020 -> 737761
+    auto rolling_hash = RsyncFileDiff(8);// 8 byte hash
     auto current = std::filesystem::current_path();
     std::cout<<current;
     auto have_file = std::filesystem::exists("./Input.txt/Input.txt");
