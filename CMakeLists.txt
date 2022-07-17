@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 project(testing_rolling_hash)
 
-set(CMAKE_CXX_STANDARD 14)
-
+set(CMAKE_CXX_STANDARD 17)
+set(OPENSSL_ROOT_DIR  /opt/homebrew/opt/openssl@1 )
 set(SOURCE_FILES main.cpp)
 add_executable(RollingHash_run ${SOURCE_FILES})
 
