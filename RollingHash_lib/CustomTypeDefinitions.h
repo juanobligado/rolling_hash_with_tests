@@ -7,6 +7,6 @@
 #ifndef TESTING_ROLLING_HASH_CUSTOMTYPEDEFINITIONS_H
 #define TESTING_ROLLING_HASH_CUSTOMTYPEDEFINITIONS_H
 typedef  char Byte;
-typedef std::map<uint32_t ,std::map<std::string ,int >> Indexes;
+typedef std::map<uint32_t ,std::map<std::string ,int >> SimpleHashToComplexMap;
 
 #endif //TESTING_ROLLING_HASH_CUSTOMTYPEDEFINITIONS_H

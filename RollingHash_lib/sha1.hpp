@@ -265,8 +265,8 @@ inline void SHA1::update(const std::string &s)
 
 inline void SHA1::update(const std::vector<char> &s)
 {
-    std::istringstream is(s.data());
-    update(is);
+    auto str= std::string(s.begin(),s.end());
+    update(str);
 }
 
 inline void SHA1::update(std::istream &is)

@@ -14,6 +14,7 @@
 RollingCheckSum::RollingCheckSum(){
     a = 0;
     b = 0;
+    count = 0;
 }
 
 //Calculate checksum from byte array
@@ -39,6 +40,7 @@ uint32_t RollingCheckSum::check_sum(){
     const int POW_16 = 16;
     const uint32_t MASK_16 = 0xFFFF; // 16 bit mask
     return  uint32_t(b) << POW_16 | uint32_t(a)&MASK_16;
+
 }
 
 //Push byte into checksum

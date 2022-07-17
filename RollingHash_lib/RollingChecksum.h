@@ -35,6 +35,13 @@ class RollingCheckSum{
         int get_count(){return count;}
         uint8_t get_removed(){return  last;}
         std::vector<Byte>& get_window(){return  window;}
+        void clear(){
+            a= 0;
+            b=0;
+            count = 0;
+            window.clear();
+            last = 0;
+        }
 
 };
 #endif //TESTING_ROLLING_HASH_ROLLINGCHECKSUM_H

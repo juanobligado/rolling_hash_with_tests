@@ -9,5 +9,5 @@ target_link_libraries(Google_Tests_run RollingHash_lib)
 
 target_link_libraries(Google_Tests_run gtest gtest_main)
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Input.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/docs)
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ModifiedInput.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/docs)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Input.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test_inputs)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ModifiedInput.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test_inputs)
